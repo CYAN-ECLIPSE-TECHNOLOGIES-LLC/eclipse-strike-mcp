@@ -1,0 +1,51 @@
+{
+ "bench": {
+  "bench_verdict": "CERTIFIED(local)",
+  "certified": true,
+  "checks": [
+   "native status 'pending_review' -> UNMAPPED verbatim; 'online' -> OPEN",
+   "quote math recomputed independently from book levels + core-read fee bps (buy AND sell)",
+   "stale schedule (97h > 72h freshness) -> FEE_UNVERIFIED, price still serves",
+   "NO account tools: Coinbase-MCP-shaped verbs refused on direct call; tool surface is exactly the 6 data tools",
+   "wrap-posture note present: README names the three vendor MCPs + governed wrap; venue_status states it on every call",
+   "cross-adapter parity: same logical book via Coinbase-shaped and CLOB-shaped paths -> identical normalized Book + identical quote math",
+   "auth enforced",
+   "schema valid",
+   "no network surface (source-level)",
+   "no secret leak",
+   "sane errors",
+   "process health",
+   "audit completeness (shared ledger chain)",
+   "bench isolation"
+  ],
+  "not_tested": [
+   "Live Coinbase public reads \u2014 M0 runs against fixtures shaped like the real public product/book responses behind a transport seam (load_fixtures); live public-read verification is a later step.",
+   "Account anything \u2014 Coinbase's official account MCP exists and Strike's account posture is a governed WRAP of it (spec 10.1), M1+ scope. No account tool exists in this build; the vendor's Wallet/CDP MCP surfaces are other suites' chapters and are out of scope here.",
+   "Account-specific fee tiers \u2014 M0 uses the public schedule shape, labeled as such; the account's own reported rates supersede at M1."
+  ],
+  "scorecard_ref": "test-bench/results/eclipse-strike-mcp-2026-10-25-2.json",
+  "status": "CERTIFIED(local) \u2014 Eclipse Bazaar Test Bench 2026-10-25 (scorecard eclipse-strike-mcp-2026-10-25-2.json): 13 pass / 1 na / 0 fail over 14 checks incl. bench isolation. M0 data-only scope; live venue reads not_tested per the preserved not_tested list."
+ },
+ "category": "Markets / Exchange Adapters",
+ "created": "2026-10-25",
+ "description": "The Coinbase exchange adapter of the Eclipse Markets suite (Wing A), in M0 public-data form. Coinbase ships official MCPs (account trading, wallet, CDP); Strike re-implements none of them \u2014 it is the thin public-data adapter over Coinbase-shaped product and level-2 book fixtures, normalized through the Eclipse Book core (the same canonical builders Forecast uses, so cross-adapter parity is testable). Native product statuses the core vocabulary does not map surface as UNMAPPED with the native string preserved. Quotes carry all-in cost from the venue's dated fee schedule; a stale schedule degrades to FEE_UNVERIFIED. No account tools exist in this build: account paths are an M1+ governed wrap of the vendor's account MCP, behind vault credentials and the core placement gate.",
+ "icon": "icon-512.png",
+ "name": "Eclipse Strike MCP",
+ "powered_by": "Cyan Eclipse Technologies",
+ "price_model": "Free local v0.1; family pricing TBD per spec",
+ "repo": null,
+ "slug": "eclipse-strike-mcp",
+ "status": "In development \u2014 v0.1.0 M0 local build (Coinbase public-data adapter; fixtures behind a transport seam; CERTIFIED(local) \u2014 Eclipse Bazaar Test Bench 2026-10-25)",
+ "tagline": "The Coinbase exchange adapter: spot products and books, normalized into the suite's one book.",
+ "tools": [
+  "product_list",
+  "product_get",
+  "book_get",
+  "quote_get",
+  "venue_status",
+  "receipt_list"
+ ],
+ "transport": "MCP over stdio (HTTP transport on roadmap)",
+ "vendor": "Cyan Eclipse Technologies",
+ "x402_ready": false
+}
